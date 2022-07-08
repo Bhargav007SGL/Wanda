@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        label{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <label for="">Color</label>
+    <input type="color" value="1" id="1">
+    <label for="">Color</label>
+    <input type="color" value="2" id="2">
+    <label for="">Color</label>
+    <input type="color" value="3" id="3">
+    <label for="">Color</label>
+    <input type="color" value="4" id="4">
+    <label for="">Color</label>
+    <input type="color" value="5" id="5">
+    <label for="">Color</label>
+    <input type="color" value="6" id="6">
+    <label for="">Color</label>
+    <input type="color" value="7" id="7">
+    <label for="">Color</label>
+    <input type="color" value="8" id="8">
+    <label for="">Color</label>
+    <input type="color" value="9" id="9">
+    <label for="">Color</label>
+    <input type="color" value="10" id="10">
+    <script>
+        var allInput = document.getElementsByTagName('input');
+        var colorInputArray = [];
+        for(var i =0; i < allInput.length; i++)
+        {
+            if(allInput[i].type == "color")
+            {
+                colorInputArray.push({"value":allInput[i].value,"id":allInput[i].id})
+            }
+        }
+        var myHeaders = new Headers();
+myHeaders.append("Content-Type", "application/json");
+
+var raw = JSON.stringify({
+  "colorArray": colorInputArray
+});
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: raw,
+  redirect: 'follow'
+};
+
+fetch("http://localhost:3000/csvGenerator", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+    </script>
+</body>
+</html>
