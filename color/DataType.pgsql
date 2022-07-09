@@ -1,0 +1,1 @@
+select column_name,data_type,table_name from information_schema.columns where (table_name = 'Wanda') and (data_type = 'bigint' or data_type = 'ARRAY')
